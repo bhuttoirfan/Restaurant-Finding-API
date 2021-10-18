@@ -7,11 +7,13 @@ export class DbMongo {
         let connectionUrl = `mongodb://${h}/${dbName}`;
 
         if(u != undefined && pass != undefined) {
-            connectionUrl = `mongodb+srv://${u}:${pass}@${h}/${dbName}`;
+            //mongodb+srv://Irfan-Khan:<password>@cluster0.05p4a.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+            connectionUrl = `mongodb+srv://${u}:${pass}@cluster0.05p4a.mongodb.net/${dbName}?retryWrites=true&w=majority`;
         }
 
         connect(connectionUrl, (err : any) => {
             if (err) {
+                console.log(err);
                 console.log('connection failed with mongo.');
             } else {
                 console.log('connection successful with mongo.');
