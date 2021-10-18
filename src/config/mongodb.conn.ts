@@ -3,10 +3,14 @@ import { connection, connect } from "mongoose";
 export class DbMongo {
     constructor() {}
 
-    connect(h: string, dbName: string) {
-        let connectionUri = `mongodb://${h}/${dbName}`;
+    connect(h: string, dbName: string, u?: string, pass?: string, p?: number) {
+        let connectionUrl = `mongodb://${h}/${dbName}`;
 
-        connect(connectionUri, (err : any) => {
+        if(u != undefined && pass != undefined) {
+            connectionUrl = `mongodb+srv://${u}:${pass}@${h}/${dbName}`;
+        }
+
+        connect(connectionUrl, (err : any) => {
             if (err) {
                 console.log('connection failed with mongo.');
             } else {
