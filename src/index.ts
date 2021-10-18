@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3000;
 function initApplication(): express.Application {
 
     // build connection with mongo
-    new DbMongo().connect(mongo_cluster, db_name);
+    new DbMongo().connect(mongo_cluster, db_name, user_name, pass);
     
     // create instance of express to use middlewares
     const app = express();
